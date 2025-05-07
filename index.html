@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Ты не один</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background: url('https://steamuserimages-a.akamaihd.net/ugc/1776083704495089649/8CC49C366969E7169B4862A2280AB2676DA8AC35/?imw=512&imh=320&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=true') no-repeat center center fixed;
+            background-size: cover;
+            color: white;
+            font-family: 'Times New Roman', serif;
+            text-align: center;
+        }
+        .changing-text {
+            font-size: 60px;
+            text-shadow: 0 0 10px #ff0000;
+            margin-bottom: 40px;
+            min-height: 80px;
+            animation: flicker 3s infinite;
+            background-color: rgba(0, 0, 0, 0.5);
+            padding: 10px 20px;
+            border-radius: 10px;
+        }
+        .button {
+            padding: 15px 30px;
+            margin: 10px;
+            font-size: 18px;
+            color: white;
+            background: rgba(255, 0, 0, 0.3);
+            border: 1px solid rgba(255, 0, 0, 0.5);
+            border-radius: 5px;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+        .button:hover {
+            background: rgba(255, 0, 0, 0.5);
+            transform: scale(1.05);
+        }
+        @keyframes flicker {
+            0%, 100% { opacity: 0.9; }
+            50% { opacity: 0.4; }
+        }
+    </style>
+</head>
+<body>
+    <div class="changing-text" id="text">Я Нечтожество</div>
+    <a href="https://t.me/Suicide_xxx" class="button">Написать в ЛС</a>
+    <a href="https://t.me/HEHABNCTb_K_CEbE_R_XO4Y_CMEPTN" class="button">Музыка</a>
+
+    <script>
+        const phrases = [
+            "Я Нечтожество", 
+            "Я Хочу здохнуть", 
+            "Я пустое место"
+        ];
+        let currentIndex = 0;
+        const textElement = document.getElementById("text");
+
+        function changeText() {
+            currentIndex = (currentIndex + 1) % phrases.length;
+            textElement.textContent = phrases[currentIndex];
+        }
+
+        setInterval(changeText, 3000); // Меняем текст каждые 3 секунды
+    </script>
+</body>
+</html>
