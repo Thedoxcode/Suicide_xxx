@@ -1,8 +1,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>⚰️⚰️⚰️</title>
+    <title>✝️ НЕБЫТИЕ ✝️</title>
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&display=swap');
+        
         body {
             margin: 0;
             padding: 0;
@@ -12,35 +14,56 @@
             justify-content: center;
             align-items: center;
             background: 
-                /* Шум */
-                url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="400" height="400" opacity="0.03"><filter id="noise"><feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="3"/></filter><rect width="100%" height="100%" filter="url(%23noise)"/></svg>'),
-                /* Трещины */
-                url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" opacity="0.1"><path d="M0,0 L100,100 L200,50 L300,150 L400,0" stroke="white" stroke-width="1" fill="none"/><path d="M50,200 L150,100 L250,200 L350,50" stroke="white" stroke-width="1" fill="none"/></svg>'),
+                /* Шум с эффектом старых плёнок */
+                url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="400" height="400" opacity="0.08"><filter id="noise"><feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="3"/></filter><rect width="100%" height="100%" filter="url(%23noise)"/></svg>'),
+                /* Трещины на стекле */
+                url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" opacity="0.15"><path d="M0,0 L100,100 L200,50 L300,150 L400,0 L500,200 L600,100" stroke="rgba(255,255,255,0.3)" stroke-width="1.5" fill="none"/><path d="M50,200 L150,100 L250,200 L350,50 L450,250 L550,150" stroke="rgba(255,255,255,0.3)" stroke-width="1.5" fill="none"/></svg>'),
                 /* Кровавые подтёки */
-                linear-gradient(45deg, rgba(255,0,0,0.05) 0%, rgba(0,0,0,0) 20%),
-                /* Основной фон */
+                linear-gradient(45deg, rgba(150,0,0,0.15) 0%, rgba(0,0,0,0) 30%),
+                linear-gradient(-45deg, rgba(100,0,0,0.1) 0%, rgba(0,0,0,0) 25%),
+                /* Основной фон - тёмное кладбище */
                 url('https://steamuserimages-a.akamaihd.net/ugc/1776083704495089649/8CC49C366969E7169B4862A2280AB2676DA8AC35/?imw=512&imh=320&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=true') no-repeat center center;
             background-size: cover;
-            color: white;
-            font-family: 'Courier New', monospace;
+            color: rgba(255, 255, 255, 0.8);
+            font-family: 'Cinzel Decorative', cursive;
             text-align: center;
             overflow: hidden;
             position: relative;
+            animation: flicker 12s infinite;
+        }
+
+        /* Эффект старых плёнок */
+        body::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                linear-gradient(rgba(18, 16, 16, 0.1) 50%, transparent 50%),
+                linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+            background-size: 100% 4px, 6px 100%;
+            pointer-events: none;
+            z-index: 1;
         }
 
         /* Эффект глитча */
         .glitch-container {
             position: relative;
+            z-index: 2;
         }
         .glitch-text {
             position: relative;
-            font-size: 60px;
-            text-shadow: 0 0 10px #ff0000;
+            font-size: 4.5rem;
+            text-shadow: 0 0 10px rgba(255, 0, 0, 0.7), 0 0 20px rgba(150, 0, 0, 0.5);
             margin-bottom: 40px;
-            animation: glitch 5s infinite;
-            background-color: rgba(0, 0, 0, 0.7);
-            padding: 10px 20px;
-            border: 1px solid rgba(255, 0, 0, 0.3);
+            animation: glitch 7s infinite;
+            background-color: rgba(0, 0, 0, 0.6);
+            padding: 20px 40px;
+            border: 1px solid rgba(255, 0, 0, 0.4);
+            border-radius: 3px;
+            letter-spacing: 2px;
         }
         .glitch-text::before, .glitch-text::after {
             content: attr(data-text);
@@ -49,138 +72,213 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.7);
-            padding: 10px 20px;
+            background: rgba(0, 0, 0, 0.6);
+            padding: 20px 40px;
+            border-radius: 3px;
         }
         .glitch-text::before {
-            color: #0ff;
+            color: rgba(0, 255, 255, 0.7);
             z-index: -1;
-            animation: glitch-effect 3s infinite;
+            animation: glitch-effect 4s infinite, flicker 5s infinite;
         }
         .glitch-text::after {
-            color: #f0f;
+            color: rgba(255, 0, 255, 0.7);
             z-index: -2;
-            animation: glitch-effect 2s infinite reverse;
+            animation: glitch-effect 3s infinite reverse, flicker 7s infinite;
         }
 
-        /* Кнопки с эффектом "грязи" */
-        .button {
-            padding: 15px 30px;
-            margin: 10px;
-            font-size: 18px;
-            color: white;
+        /* Ссылка ЛС */
+        .ls-link {
+            padding: 16px 35px;
+            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.9);
             background: 
-                linear-gradient(rgba(255, 0, 0, 0.3), rgba(70, 0, 0, 0.3)),
-                url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" opacity="0.1"><rect width="100%" height="100%" fill="black"/></svg>');
-            border: 1px solid rgba(255, 0, 0, 0.5);
-            border-radius: 0;
+                linear-gradient(rgba(80, 0, 0, 0.5), rgba(40, 0, 0, 0.7)),
+                url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" opacity="0.2"><rect width="100%" height="100%" fill="black"/></svg>');
+            border: 1px solid rgba(255, 0, 0, 0.6);
+            border-radius: 2px;
             text-decoration: none;
-            transition: all 0.3s;
+            transition: all 0.4s;
             position: relative;
             overflow: hidden;
-            font-family: 'Courier New', monospace;
+            font-family: 'Cinzel Decorative', cursive;
             text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 0 15px rgba(150, 0, 0, 0.3);
+            z-index: 2;
         }
-        .button:hover {
-            background: rgba(255, 0, 0, 0.5);
-            transform: skewX(-10deg);
+        .ls-link:hover {
+            background: rgba(100, 0, 0, 0.7);
+            transform: skewX(-5deg) scale(1.05);
+            box-shadow: 0 0 25px rgba(255, 0, 0, 0.5);
+            text-shadow: 0 0 10px rgba(255, 100, 100, 0.8);
         }
-        .button::after {
+        .ls-link::before {
             content: '';
             position: absolute;
             top: 0;
             left: -100%;
             width: 100%;
             height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-            transition: 0.5s;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            transition: 0.6s;
         }
-        .button:hover::after {
+        .ls-link:hover::before {
             left: 100%;
+        }
+        .ls-link::after {
+            content: '✝';
+            position: absolute;
+            right: 10px;
+            opacity: 0;
+            transition: all 0.3s;
+        }
+        .ls-link:hover::after {
+            opacity: 0.6;
+            right: 15px;
         }
 
         /* Анимации */
         @keyframes flicker {
-            0%, 100% { opacity: 0.9; }
-            50% { opacity: 0.4; }
+            0%, 10%, 12%, 19%, 21%, 33%, 35%, 40%, 44%, 60%, 65%, 80%, 85%, 100% { opacity: 0.95; }
+            11%, 20%, 34%, 45%, 64%, 84% { opacity: 0.6; }
         }
         @keyframes glitch {
-            0% { transform: translate(0); }
-            20% { transform: translate(-3px, 3px); }
-            40% { transform: translate(-3px, -3px); }
-            60% { transform: translate(3px, 3px); }
-            80% { transform: translate(3px, -3px); }
-            100% { transform: translate(0); }
+            0%, 100% { transform: translate(0); }
+            10% { transform: translate(-4px, 3px); }
+            20% { transform: translate(-3px, -4px); }
+            30% { transform: translate(4px, 3px); }
+            40% { transform: translate(3px, -4px); }
+            50% { transform: translate(-4px, 3px); }
+            60% { transform: translate(-3px, -4px); }
+            70% { transform: translate(4px, 3px); }
+            80% { transform: translate(3px, -4px); }
+            90% { transform: translate(-4px, 3px); }
         }
         @keyframes glitch-effect {
-            0% { clip-path: inset(10% 0 90% 0); }
-            20% { clip-path: inset(50% 0 40% 0); }
-            40% { clip-path: inset(30% 0 60% 0); }
-            60% { clip-path: inset(70% 0 20% 0); }
-            80% { clip-path: inset(10% 0 80% 0); }
-            100% { clip-path: inset(40% 0 50% 0); }
+            0% { clip-path: inset(10% 0 90% 0); transform: translate(-5px, 0); }
+            20% { clip-path: inset(50% 0 40% 0); transform: translate(3px, 3px); }
+            40% { clip-path: inset(30% 0 60% 0); transform: translate(-3px, -3px); }
+            60% { clip-path: inset(70% 0 20% 0); transform: translate(5px, 0); }
+            80% { clip-path: inset(10% 0 80% 0); transform: translate(-3px, 3px); }
+            100% { clip-path: inset(40% 0 50% 0); transform: translate(3px, -3px); }
         }
 
-        /* Доп эффекты */
+        /* Кровавые капли */
         .blood-drip {
             position: absolute;
-            width: 2px;
-            height: 100px;
-            background: linear-gradient(to bottom, rgba(255,0,0,0.8), transparent);
-            animation: drip 5s infinite;
-            opacity: 0.7;
+            width: 1.5px;
+            height: 150px;
+            background: linear-gradient(to bottom, rgba(200, 0, 0, 0.9), transparent);
+            animation: drip 8s infinite;
+            opacity: 0;
+            z-index: 1;
         }
         @keyframes drip {
-            0% { transform: translateY(-100px); opacity: 0; }
+            0% { transform: translateY(-150px); opacity: 0; }
+            10% { opacity: 0.8; }
+            90% { opacity: 0.8; }
+            100% { transform: translateY(100vh); opacity: 0; }
+        }
+
+        /* Падающие листья (как символ увядания) */
+        .falling-leaf {
+            position: absolute;
+            color: rgba(150, 0, 0, 0.7);
+            font-size: 1.5rem;
+            animation: falling linear infinite;
+            z-index: 1;
+            opacity: 0.7;
+        }
+        @keyframes falling {
+            0% { transform: translateY(-100px) rotate(0deg); opacity: 0; }
             10% { opacity: 0.7; }
             90% { opacity: 0.7; }
-            100% { transform: translateY(100vh); opacity: 0; }
+            100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
+        }
+
+        /* Эффект дыхания (пульсации) */
+        .pulse-effect {
+            animation: pulse 8s infinite alternate;
+        }
+        @keyframes pulse {
+            0% { opacity: 0.8; }
+            100% { opacity: 0.95; }
         }
 
         /* Скрытый аудиоплеер */
         .audio-player {
             position: fixed;
-            bottom: 10px;
-            right: 10px;
-            opacity: 0.3;
-            transition: opacity 0.3s;
+            bottom: 15px;
+            right: 15px;
+            opacity: 0.2;
+            transition: opacity 0.4s;
             z-index: 1000;
+            filter: grayscale(80%) contrast(150%);
         }
         .audio-player:hover {
-            opacity: 1;
+            opacity: 0.8;
+            filter: grayscale(30%) contrast(120%);
+        }
+
+        /* Текст внизу */
+        .footer-text {
+            position: fixed;
+            bottom: 10px;
+            left: 0;
+            right: 0;
+            text-align: center;
+            font-size: 0.8rem;
+            color: rgba(255, 255, 255, 0.4);
+            letter-spacing: 1px;
+            z-index: 2;
         }
     </style>
 </head>
-<body>
+<body class="pulse-effect">
     <!-- Кровавые подтёки -->
-    <div class="blood-drip" style="left: 10%;"></div>
-    <div class="blood-drip" style="left: 30%; animation-delay: 1s;"></div>
-    <div class="blood-drip" style="left: 70%; animation-delay: 2s;"></div>
-    <div class="blood-drip" style="left: 90%; animation-delay: 3s;"></div>
+    <div class="blood-drip" style="left: 12%; animation-delay: 1.2s;"></div>
+    <div class="blood-drip" style="left: 28%; animation-delay: 3.5s;"></div>
+    <div class="blood-drip" style="left: 45%; animation-delay: 0.5s;"></div>
+    <div class="blood-drip" style="left: 67%; animation-delay: 2.8s;"></div>
+    <div class="blood-drip" style="left: 85%; animation-delay: 4.2s;"></div>
+
+    <!-- Падающие листья -->
+    <div class="falling-leaf" style="left: 15%; animation-duration: 15s;">✝</div>
+    <div class="falling-leaf" style="left: 30%; animation-duration: 18s; animation-delay: 2s;">✞</div>
+    <div class="falling-leaf" style="left: 55%; animation-duration: 12s; animation-delay: 5s;">✟</div>
+    <div class="falling-leaf" style="left: 75%; animation-duration: 20s; animation-delay: 3s;">☠</div>
+    <div class="falling-leaf" style="left: 90%; animation-duration: 16s; animation-delay: 1s;">✝</div>
 
     <div class="glitch-container">
-        <div class="glitch-text" id="text" data-text="Я Нечтожество">Я Нечтожество</div>
+        <div class="glitch-text" id="text" data-text="Я НИЧТО">Я НИЧТО</div>
     </div>
-    <a href="https://t.me/Suicide_xxx" class="button">Написать в ЛС</a>
-    <a href="https://t.me/HEHABNCTb_K_CEbE_R_XO4Y_CMEPTN" class="button">Музыка</a>
 
-    <!-- Аудиоплеер с вашей музыкой -->
+    <a href="https://t.me/Suicide_meX" class="ls-link">ЛС</a>
+
+    <!-- Аудиоплеер с мрачной музыкой -->
     <div class="audio-player">
         <iframe 
             width="300" 
             height="80" 
-            src="https://www.youtube.com/embed/2MWlPFXLiqc?autoplay=1&loop=1&controls=0" 
+            src="https://www.youtube.com/embed/2MWlPFXLiqc?autoplay=1&loop=1&controls=0&start=30" 
             frameborder="0" 
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
             allowfullscreen>
         </iframe>
     </div>
 
+    <div class="footer-text">«И ВСЁ СТАЛО ПУСТОТОЙ...»</div>
+
     <script>
         const phrases = [
-            "Я Нечтожество", 
-            "Я Хочу здохнуть", 
-            "Я пустое место"
+            "Я НИЧТОЖЕСТВО", 
+            "ПУСТОТА ВНУТРИ", 
+            "ВСЁ БЕССМЫСЛЕННО",
+            "Я ИСЧЕЗАЮ",
+            "НЕТ ВЫХОДА",
+            "ТЬМА ПОГЛОТИТ",
+            "КОНЕЦ БЛИЗОК"
         ];
         let currentIndex = 0;
         const textElement = document.getElementById("text");
@@ -189,23 +287,55 @@
             currentIndex = (currentIndex + 1) % phrases.length;
             textElement.textContent = phrases[currentIndex];
             textElement.setAttribute('data-text', phrases[currentIndex]);
+            
+            // Добавляем дополнительный эффект при смене текста
+            document.body.style.filter = `hue-rotate(${Math.random() * 20 - 10}deg) contrast(${1 + Math.random() * 0.5})`;
+            textElement.style.animation = 'none';
+            setTimeout(() => {
+                textElement.style.animation = 'glitch 7s infinite';
+            }, 10);
         }
 
-        setInterval(changeText, 3000);
+        setInterval(changeText, 3500);
 
-        // Случайные помехи
+        // Случайные помехи и эффекты
         setInterval(() => {
-            document.body.style.filter = `hue-rotate(${Math.random() * 10}deg) contrast(${1 + Math.random() * 0.3})`;
-        }, 500);
+            const randomEffect = Math.random();
+            if (randomEffect > 0.7) {
+                document.body.style.filter = `hue-rotate(${Math.random() * 30 - 15}deg) contrast(${1 + Math.random() * 0.7}) brightness(${0.8 + Math.random() * 0.4})`;
+            }
+        }, 800);
 
         // Добавляем больше кровавых капель
-        for (let i = 0; i < 10; i++) {
+        for (let i = 0; i < 15; i++) {
             const drip = document.createElement('div');
             drip.className = 'blood-drip';
             drip.style.left = Math.random() * 100 + '%';
-            drip.style.animationDelay = Math.random() * 5 + 's';
+            drip.style.animationDelay = Math.random() * 8 + 's';
+            drip.style.animationDuration = 5 + Math.random() * 10 + 's';
+            drip.style.height = 100 + Math.random() * 150 + 'px';
+            drip.style.opacity = 0.3 + Math.random() * 0.7;
             document.body.appendChild(drip);
         }
+
+        // Добавляем больше падающих листьев/крестов
+        for (let i = 0; i < 8; i++) {
+            const leaf = document.createElement('div');
+            leaf.className = 'falling-leaf';
+            leaf.style.left = Math.random() * 100 + '%';
+            leaf.style.animationDelay = Math.random() * 10 + 's';
+            leaf.style.animationDuration = 10 + Math.random() * 15 + 's';
+            leaf.textContent = Math.random() > 0.5 ? '✝' : (Math.random() > 0.5 ? '✞' : '☠');
+            document.body.appendChild(leaf);
+        }
+
+        // Эффект мерцания ссылки
+        setInterval(() => {
+            const link = document.querySelector('.ls-link');
+            if (Math.random() > 0.8) {
+                link.style.boxShadow = `0 0 ${15 + Math.random() * 20}px rgba(${150 + Math.random() * 105}, 0, 0, ${0.3 + Math.random() * 0.4})`;
+            }
+        }, 1000);
     </script>
 </body>
 </html>
